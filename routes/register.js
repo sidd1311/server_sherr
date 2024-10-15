@@ -92,12 +92,12 @@ router.post('/register', async(req, res)=>{
 
     // Sending Mails
     const mailOptions = {
-        from: 'siddbhardwaj2005@gmail.com',
+        from: process.env.GMAIL_USER,
         to: email,
         subject: 'Account Confirmation',
         html: `<h3>Dear ${name},</h3>
                <p>Please confirm your account by clicking the link below:</p>
-               <a href="http://localhost:5000/register/confirm/${confirmationToken}">Confirm Account</a>`
+               <a href="${process.env.Hosted_URL}/register/confirm/${confirmationToken}">Confirm Account</a>`
       };
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
